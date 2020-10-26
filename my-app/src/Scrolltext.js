@@ -1,7 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
-import Top from "./Top";
-import Middle from "./Middle";
 import styled from "styled-components";
 import "./App.css";
 
