@@ -4,11 +4,16 @@ import styled from "styled-components";
 import HeroSrc from "./images/shopify_masters_hero.jpg";
 
 import useResizeAware from "react-resize-aware";
-import { Spring, animated } from "react-spring/renderprops";
+import { Spring } from "react-spring/renderprops";
+import { useSpring, animated } from "react-spring";
 
 function Top() {
   const [resizeListener, sizes] = useResizeAware();
-  const [toggle, setToggle] = React.useState(false);
+  const [toggle, setToggle] = React.useState(true);
+  const props = useSpring({
+    height: toggle ? 300 : 500,
+    from: { opacity: toggle ? 500 : 300 },
+  });
 
   React.useEffect(() => {
     console.log(sizes);
@@ -32,34 +37,13 @@ function Top() {
       {resizeListener}
 
       <HeroDiv>
-        <Spring
-          native
-          force
-          config={{ tension: 2000, friction: 100, precision: 1 }}
-          from={{
-            // height: toggle ? 500 : 100,
-            opacity: toggle ? 1 : 0.5,
-            // flexdirection: toggle ? "row" : "column",
-          }}
-          to={{
-            // height: toggle ? 100 : 500,
-            opacity: toggle ? 0.5 : 1,
-            // flexdirection: toggle ? "column" : "row",
-          }}
-          onRest={reportSize}
-        >
-          {(props) => (
-            <animated.div className="item" style={props}>
-              <ImageDiv>
-                <HeroImgMB image_source={HeroSrc}></HeroImgMB>
-              </ImageDiv>
-              <TextDiv>
-                The Pre-Launch Strategies of a Million-Dollar Brand
-              </TextDiv>
-              <SpringButton onClick={onToggle}>ClickMe</SpringButton>
-            </animated.div>
-          )}
-        </Spring>
+        <animated.div className="item" style={props}>
+          <ImageDiv>
+            <HeroImgMB image_source={HeroSrc}></HeroImgMB>
+          </ImageDiv>
+          <TextDiv>The Pre-Launch Strategies of a Million-Dollar Brand</TextDiv>
+          <SpringButton onClick={onToggle}>ClickMe</SpringButton>
+        </animated.div>
       </HeroDiv>
     </Wrapper>
   );
@@ -114,6 +98,8 @@ const HeroImgMB = styled.div`
     background-repeat: no-repeat;
   }
 `;
+
+const testDiv = styled(animated)``;
 
 const Wrapper = styled.div`
   padding: 10px;
