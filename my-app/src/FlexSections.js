@@ -3,15 +3,16 @@ import styled from "styled-components";
 import "./App.css";
 import { useSpring, animated } from "react-spring";
 import { content_string } from "./content";
-function Scrolltext() {
+import Section1 from "./Section1";
+function FlexSections() {
   const [toggle, setToggle] = React.useState(false);
 
   const big = 300;
   const small = 200;
 
   const props = useSpring({
-    height: toggle ? small : big,
-    from: { height: toggle ? big : small },
+    from: { height: toggle ? big : small, daveValue: toggle ? big : small },
+    to: { height: toggle ? small : big, daveValue: toggle ? small : big },
   });
 
   // height: toggle ? "50%" : "20%",
@@ -25,14 +26,23 @@ function Scrolltext() {
 
   return (
     <ScrollWrapper>
-      <SpringButton onClick={onToggle}>ClickMe</SpringButton>
-      <ScrollText>
+      <animated.div style={props}>
+        <SpringButton onClick={onToggle}>ClickMe</SpringButton>
+        <Section1 daveValue={props.daveValue}></Section1>
+        <Section2>section 2</Section2>
+      </animated.div>
+
+      {/* <ScrollText>
         <animated.div style={props}>{content_string}</animated.div>
-      </ScrollText>
+      </ScrollText> */}
     </ScrollWrapper>
   );
 }
 const SpringButton = styled.button``;
+
+const Section2 = styled.div`
+  background-color: purple;
+`;
 
 const ScrollWrapper = styled.div`
   display: flex;
@@ -53,4 +63,4 @@ const ScrollText = styled.div`
   }
 `;
 
-export default Scrolltext;
+export default FlexSections;

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Scrolltext from "./Scrolltext";
 import Player from "./Player";
 import "./App.css";
-
+import FlexSections from "./FlexSections";
 function App() {
   return (
     <FleXApp>
@@ -16,7 +16,8 @@ function App() {
       <Player></Player>
 
       <Item2>
-        <Scrolltext></Scrolltext>
+        <FlexSections></FlexSections>
+        {/* <Scrolltext></Scrolltext> */}
       </Item2>
     </FleXApp>
   );
