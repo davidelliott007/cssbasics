@@ -5,25 +5,28 @@ import styled from "styled-components";
 import "./App.css";
 import { useSpring, animated } from "react-spring";
 import { content_string } from "./content";
-import Section1 from "./Section1";
-function FlexSections() {
+
+function FlexSections2() {
   const [toggle, setToggle] = React.useState(false);
 
-  const big = 300;
-  const small = 200;
+  const big = "30vh";
+  const small = "20vh";
 
   const props = useSpring({
     from: {
       height: toggle ? big : small,
-      daveValue: toggle ? big : small,
+      daveValue: toggle ? "20%" : "30%",
       backgroundColor: toggle ? "red" : "green",
-      flexDirection: toggle ? "column" : "row",
+      // flexGrow: toggle ? 4 : 1,
+      width: "80%",
+      overflowY: "scroll",
+      marginLeft: "10%",
     },
     to: {
       height: toggle ? small : big,
       daveValue: toggle ? small : big,
       backgroundColor: toggle ? "green" : "red",
-      flexDirection: toggle ? "row" : "column",
+      // flexGrow: toggle ? 1 : 4,
     },
   });
 
@@ -38,22 +41,25 @@ function FlexSections() {
 
   return (
     <ScrollWrapper>
+      <SpringButton onClick={onToggle}>ClickMe</SpringButton>
       <animated.div style={props}>
-        <SpringButton onClick={onToggle}>ClickMe</SpringButton>
-        <Section1 daveValue={props}></Section1>
-        <Section2>section 2</Section2>
+        {content_string}
+        {/* <Section1>section1</Section1> */}
       </animated.div>
 
-      {/* <ScrollText>
-        <animated.div style={props}>{content_string}</animated.div>
-      </ScrollText> */}
+      <Section2>section 2</Section2>
     </ScrollWrapper>
   );
 }
 const SpringButton = styled.button``;
 
+const Section1 = styled.div`
+  background-color: green;
+`;
+
 const Section2 = styled.div`
   background-color: purple;
+  flex-grow: 1;
 `;
 
 const ScrollWrapper = styled.div`
@@ -67,12 +73,7 @@ const ScrollText = styled.div`
   scrollbar-width: 10px;
   background-color: purple;
   overflow: scroll;
-  bottom: 0px;
-  position: absolute;
   margin-left: 10%;
-  @media (max-width: 600px) {
-    bottom: 20px;
-  }
 `;
 
-export default FlexSections;
+export default FlexSections2;

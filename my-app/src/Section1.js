@@ -7,10 +7,10 @@ function Section1({ daveValue }) {
   //INSTEAD OF CLICKING BUTTON, HAVE THIS GET SET OFF BY A SELECTOR?
   // try with flexbox
 
-  let [localDaveValue, setLocalDaveValue] = React.useState(daveValue.payload);
+  let [localDaveValue, setLocalDaveValue] = React.useState(daveValue.value);
 
   console.log(daveValue);
-  return <ScrollWrapper>{localDaveValue}</ScrollWrapper>;
+  return <ScrollWrapper>hey{localDaveValue}</ScrollWrapper>;
 }
 const SpringButton = styled.button``;
 
