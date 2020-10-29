@@ -15,6 +15,8 @@ function FlexSections3(heightOfText) {
 
   return (
     <ScrollWrapper>
+      {console.log(heightOfText.heightOfText)}
+
       <Section1>
         <ScrollText heightpassed={heightOfText.heightOfText}>
           {content_string}
@@ -29,7 +31,6 @@ const SpringButton = styled.button``;
 const Section1 = styled.div`
   background-color: green;
   /* height: 300px; */
-  height: (${(props) => props.height});
 `;
 
 const Section2 = styled.div`

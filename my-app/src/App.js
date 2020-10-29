@@ -18,6 +18,9 @@ function App() {
 
   const big = "50vh";
   const small = "30vh";
+  const topBig = "10vh";
+  const topSmall = "20vh";
+
   function onToggle() {
     setToggle(!toggle);
   }
@@ -27,10 +30,10 @@ function App() {
       <Item1>
         <SpringButton onClick={onToggle}>ClickMe</SpringButton>
         <Spring
-          from={{ topheight: toggle ? big : small }}
-          to={{ topheight: toggle ? small : big }}
+          from={{ topHeight: toggle ? topBig : topSmall }}
+          to={{ topHeight: toggle ? topSmall : topBig }}
         >
-          {(props) => <Top2 heightOfTop={props.topheight}></Top2>}
+          {(props) => <Top2 heightOfTop={props.topHeight}></Top2>}
         </Spring>
       </Item1>
       <Player></Player>

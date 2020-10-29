@@ -26,24 +26,28 @@ function Top2(heightOfTop) {
 
   return (
     <Wrapper>
-      {resizeListener}
-      {console.log(heightOfTop.heightOfTop)}
+      {console.log(heightOfTop)}
 
       <HeroDiv>
-        <newdiv heightpassed={heightOfTop.heightOfTop}>
+        <NewDiv heightpassed={heightOfTop.heightOfTop}>
           <ImageDiv>
             <HeroImgMB image_source={HeroSrc}></HeroImgMB>
           </ImageDiv>
-          <TextDiv>The Pre-Launch Strategies of a Million-Dollar Brand</TextDiv>
-        </newdiv>
+          <TextDiv>
+            The Pre-Launch Strategies of a Million-Dollar Brand
+            {heightOfTop.heightOfTop}
+          </TextDiv>
+        </NewDiv>
       </HeroDiv>
     </Wrapper>
   );
 }
 const SpringButton = styled.button``;
 
-const newdiv = styled.div`
-  height: (${(props) => props.heightpassed});
+const NewDiv = styled.div`
+  height: ${(props) => props.heightpassed};
+  /* height: 19.978361772653784vh; */
+  background-color: green;
 `;
 
 const HeroDiv = styled.div`
