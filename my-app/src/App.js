@@ -9,6 +9,7 @@ import Player from "./Player";
 import "./App.css";
 import FlexSections2 from "./FlexSections2";
 import FlexSections3 from "./FlexSections3";
+import { BiMenu } from "react-icons/bi";
 
 import { useSpring, animated } from "react-spring";
 import { Spring } from "react-spring/renderprops";
@@ -28,12 +29,27 @@ function App() {
   return (
     <FleXApp>
       <Item1>
-        <SpringButton onClick={onToggle}>ClickMe</SpringButton>
+        <SpringButton onClick={onToggle}>
+          <BiMenu size={40} />
+        </SpringButton>
         <Spring
-          from={{ topHeight: toggle ? topBig : topSmall }}
-          to={{ topHeight: toggle ? topSmall : topBig }}
+          // force
+          // config={{ tension: 200, friction: 100, precision: 1 }}
+          from={{
+            burgerHeight: toggle ? 0 : 100,
+            topHeight: toggle ? topBig : topSmall,
+          }}
+          to={{
+            burgerHeight: toggle ? 100 : 0,
+            topHeight: toggle ? topSmall : topBig,
+          }}
         >
-          {(props) => <Top2 heightOfTop={props.topHeight}></Top2>}
+          {(props) => (
+            <Top2
+              heightOfTop={props.topHeight}
+              burgerHeight={props.burgerHeight}
+            ></Top2>
+          )}
         </Spring>
       </Item1>
       <Player></Player>
@@ -50,7 +66,10 @@ function App() {
     </FleXApp>
   );
 }
-const SpringButton = styled.button``;
+const SpringButton = styled.button`
+  background-color: transparent;
+  border: 0px;
+`;
 
 const FleXApp = styled.div``;
 const Item1 = styled.div`

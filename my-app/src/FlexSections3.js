@@ -15,8 +15,6 @@ function FlexSections3(heightOfText) {
 
   return (
     <ScrollWrapper>
-      {console.log(heightOfText.heightOfText)}
-
       <Section1>
         <ScrollText heightpassed={heightOfText.heightOfText}>
           {content_string}

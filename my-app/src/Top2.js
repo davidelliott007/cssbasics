@@ -6,8 +6,14 @@ import HeroSrc from "./images/shopify_masters_hero.jpg";
 import useResizeAware from "react-resize-aware";
 import { Spring } from "react-spring/renderprops";
 import { useSpring, animated } from "react-spring";
+const MenuItems = [
+  "Login",
+  "Search For Podcasts",
+  "Books I've heard",
+  "Languages To Learn",
+];
 
-function Top2(heightOfTop) {
+function Top2({ heightOfTop, burgerHeight }) {
   const [resizeListener, sizes] = useResizeAware();
 
   React.useEffect(() => {
@@ -20,35 +26,23 @@ function Top2(heightOfTop) {
     // console.log(event);
     // dispatch(reportHamburgerMenuSize(sizes.height));
   }
-  console.log(heightOfTop.heightOfTop);
   // from={{ flexdirection: toggle ? "row" : "column" }}
   // to={{ flexdirection: toggle ? "column" : "row" }}
 
   return (
-    <Wrapper>
+    <Wrapper heightpassed={heightOfTop}>
       {console.log(heightOfTop)}
+      {console.log(burgerHeight)}
 
       <HeroDiv>
-        <NewDiv heightpassed={heightOfTop.heightOfTop}>
-          <ImageDiv>
-            <HeroImgMB image_source={HeroSrc}></HeroImgMB>
-          </ImageDiv>
-          <TextDiv>
-            The Pre-Launch Strategies of a Million-Dollar Brand
-            {heightOfTop.heightOfTop}
-          </TextDiv>
-        </NewDiv>
+        <ImageDiv>
+          <HeroImgMB image_source={HeroSrc}></HeroImgMB>
+        </ImageDiv>
+        <TextDiv>The Pre-Launch Strategies of a Million-Dollar Brand</TextDiv>
       </HeroDiv>
     </Wrapper>
   );
 }
-const SpringButton = styled.button``;
-
-const NewDiv = styled.div`
-  height: ${(props) => props.heightpassed};
-  /* height: 19.978361772653784vh; */
-  background-color: green;
-`;
 
 const HeroDiv = styled.div`
   display: flex;
@@ -87,15 +81,15 @@ const TextDiv = styled.div`
 const HeroImgMB = styled.div`
   background-image: url("${(props) => props.image_source}");
   min-height: 200px;
-  background-position: right;
-  background-size: cover;
+
+  max-height: 200px;
+  background-size: contain;
   background-repeat: no-repeat;
 
   @media (max-width: 600px) {
-    min-height: 100px;
-    background-position: top;
+    /* min-height: 100px;
     background-size: contain;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
   }
 `;
 
@@ -104,6 +98,7 @@ const testDiv = styled(animated)``;
 const Wrapper = styled.div`
   padding: 10px;
   background-color: blue;
+  height: ${(props) => props.heightpassed};
 `;
 
 export default Top2;
