@@ -6,7 +6,7 @@ import "./App.css";
 import { useSpring, animated } from "react-spring";
 import { content_string } from "./content";
 
-function FlexSections2() {
+function FlexSections2(heightOfText) {
   const [toggle, setToggle] = React.useState(false);
 
   const big = "30vh";
@@ -26,6 +26,8 @@ function FlexSections2() {
       height: toggle ? small : big,
       daveValue: toggle ? small : big,
       backgroundColor: toggle ? "green" : "red",
+      marginLeft: "10%",
+
       // flexGrow: toggle ? 1 : 4,
     },
   });
@@ -41,9 +43,11 @@ function FlexSections2() {
 
   return (
     <ScrollWrapper>
+      {console.log(heightOfText)}
       <SpringButton onClick={onToggle}>ClickMe</SpringButton>
       <animated.div style={props}>
-        {content_string}
+        dave
+        {heightOfText.payload}
         {/* <Section1>section1</Section1> */}
       </animated.div>
 
