@@ -14,6 +14,8 @@ const MenuItems = [
 ];
 
 function Top2({ heightOfTop, burgerHeight }) {
+  const [text, setText] = React.useState(MenuItems);
+
   const [resizeListener, sizes] = useResizeAware();
 
   React.useEffect(() => {
@@ -31,8 +33,14 @@ function Top2({ heightOfTop, burgerHeight }) {
 
   return (
     <Wrapper heightpassed={heightOfTop}>
-      {console.log(heightOfTop)}
       {console.log(burgerHeight)}
+      <BurgerDiv style={burgerHeight}>
+        {resizeListener}
+
+        {text.map((t, i) => (
+          <p key={i}>{t}</p>
+        ))}
+      </BurgerDiv>
 
       <HeroDiv>
         <ImageDiv>
@@ -64,6 +72,12 @@ const HeroDiv = styled.div`
     justify-content: space-between;
     padding: 10px;
   }
+`;
+
+const BurgerDiv = styled.div`
+  grid-column: span 3;
+  background: lightblue;
+  position: relative;
 `;
 
 const ImageDiv = styled.div`

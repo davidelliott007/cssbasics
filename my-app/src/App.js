@@ -26,6 +26,8 @@ function App() {
     setToggle(!toggle);
   }
 
+  SEE IF I CAN COMMUNICATE THE TOGGLE USING USESELECTOR?
+
   return (
     <FleXApp>
       <Item1>
@@ -33,23 +35,22 @@ function App() {
           <BiMenu size={40} />
         </SpringButton>
         <Spring
-          // force
-          // config={{ tension: 200, friction: 100, precision: 1 }}
           from={{
-            burgerHeight: toggle ? 0 : 100,
-            topHeight: toggle ? topBig : topSmall,
+            height: toggle ? 0 : "auto",
+            // visibility: toggle ? "hidden" : "visible",
+            overflow: "hidden",
+            // topHeight: toggle ? topBig : topSmall,
           }}
           to={{
-            burgerHeight: toggle ? 100 : 0,
-            topHeight: toggle ? topSmall : topBig,
+            height: toggle ? "auto" : 0,
+            // visibility: toggle ? "visible" : "hidden",
+
+            overflow: "hidden",
+
+            // topHeight: toggle ? topSmall : topBig,
           }}
         >
-          {(props) => (
-            <Top2
-              heightOfTop={props.topHeight}
-              burgerHeight={props.burgerHeight}
-            ></Top2>
-          )}
+          {(props) => <Top2 burgerHeight={props}></Top2>}
         </Spring>
       </Item1>
       <Player></Player>
